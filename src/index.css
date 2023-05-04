@@ -386,12 +386,9 @@ form h4 {
 }
 
 .menukeeper {
-  display: flex;
-  justify-content: space-between;
   width: 90vw;
   margin: 0 auto;
-  max-width: 34rem;
-  flex-wrap: wrap;
+  max-width: 27rem;
 }
 
 .menukeeper span {
@@ -400,7 +397,9 @@ form h4 {
   border-radius: var(--borderRadius);
   padding: 5px;
   text-transform: uppercase;
-  margin-bottom: 15px;
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 10px;
   cursor: pointer;
 }
 
