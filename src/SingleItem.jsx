@@ -3,11 +3,35 @@ import { AiFillDelete } from "react-icons/ai";
 import { GrUpdate } from "react-icons/gr";
 import { IoMdDoneAll } from "react-icons/io";
 import { GiCrossMark } from "react-icons/gi";
+import { MdOutlineDone } from "react-icons/md";
 
-const SingleItem = ({ item, removeItem }) => {
+const SingleItem = ({ item, removeItem, submitUpdate }) => {
    const [isChecked, setIsChecked] = useState(item.completed);
+   const [updatedValue, setUpdatedValue] = useState(null);
+   const [update, setUpdate] = useState(false);
 
-   return (
+   const handleUpdate = (id) => {
+      submitUpdate({ id, updatedValue });
+      setUpdate(false);
+   };
+
+   return update ? (
+      <div className="form-area">
+         <input
+            type="text"
+            className="form-area-input"
+            value={updatedValue ?? item.name}
+            onChange={(e) => setUpdatedValue(e.target.value)}
+         />
+         <button
+            className="btn"
+            type="button"
+            onClick={() => handleUpdate(item.id)}
+         >
+            <MdOutlineDone className="submit" />
+         </button>
+      </div>
+   ) : (
       <div className="single-item">
          <input
             type="checkbox"
@@ -17,11 +41,12 @@ const SingleItem = ({ item, removeItem }) => {
          />
          <label htmlFor="_checkbox">
             {isChecked ? (
-               <IoMdDoneAll className="done icon" />
-            ) : (
                <GiCrossMark className="underdone icon" />
+            ) : (
+               <IoMdDoneAll className="done icon" />
             )}
          </label>
+
          <p
             style={{
                textDecoration: isChecked && "line-through",
@@ -30,6 +55,7 @@ const SingleItem = ({ item, removeItem }) => {
          >
             {item.name}
          </p>
+
          <button
             className="btn remove-btn"
             type="button"
@@ -40,7 +66,7 @@ const SingleItem = ({ item, removeItem }) => {
          <button
             className="btn update-btn"
             type="button"
-            onClick={() => updateItem(item.id)}
+            onClick={() => setUpdate(!update)}
          >
             <GrUpdate className=" icon" />
          </button>

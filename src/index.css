@@ -270,14 +270,53 @@ form h4 {
   text-align: center;
   margin-bottom: 1.5rem;
 }
+
 .form-control {
   display: grid;
-  grid-template-columns: 1fr 100px;
+  grid-template-columns: 1fr 80px;
 }
+
+.form-area {
+  display: grid;
+  grid-template-columns: 1fr 50px;
+}
+
+.form-area-input {
+  border-radius: 0;
+  border-top-left-radius: var(--borderRadius);
+  border-bottom-left-radius: var(--borderRadius);
+  outline: none;
+  padding: 6px;
+  font-size: 14px;
+  border: 1px solid var(--primary-600);
+}
+
+.form-area button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 15px;
+  padding: 0px;
+  border-radius: var(--borderRadius);
+}
+
+.form-area button .submit {
+  font-size: 30px;
+}
+
 .form-input {
   border-radius: 0;
   border-top-left-radius: var(--borderRadius);
   border-bottom-left-radius: var(--borderRadius);
+  outline: none;
+  padding: 7px;
+  font-size: 18px;
+  border: 1px solid var(--primary-600);
+  transition: 0.3s;
+}
+
+.form-input:focus {
+  box-shadow: 0px 0px 5px 0px var(--primary-600);
 }
 .form-control .btn {
   border-radius: 0;
@@ -301,6 +340,8 @@ form h4 {
   text-transform: uppercase;
   letter-spacing: var(--letterSpacing);
   font-weight: 500;
+  overflow-wrap: break-word;
+  overflow: hidden;
 }
 #_checkbox {
   display: none;
@@ -310,7 +351,7 @@ form h4 {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding: 8px;
 }
 
 .update-btn {
@@ -318,11 +359,11 @@ form h4 {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding: 8px;
 }
 
 .icon {
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .done,

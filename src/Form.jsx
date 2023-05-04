@@ -30,7 +30,7 @@ const Form = ({ setItems }) => {
                onChange={(e) => setName(e.target.value)}
             />
             <button className="btn" type="submit">
-               Add to do
+               Add
             </button>
          </div>
       </form>

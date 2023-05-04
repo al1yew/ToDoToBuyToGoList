@@ -1,12 +1,24 @@
 import SingleItem from "./SingleItem";
 
-const Items = ({ items, removeItem }) => {
-   
+const Items = ({ items, setItems, removeItem }) => {
+   const submitUpdate = ({ id, updatedValue }) => {
+      const updatingItem = items.find((item) => item.id === id);
+
+      updatingItem.name = updatedValue;
+
+      setItems(items);
+   };
+
    return (
       <div className="items">
          {items?.map((item) => {
             return (
-               <SingleItem key={item.id} removeItem={removeItem} item={item} />
+               <SingleItem
+                  key={item.id}
+                  submitUpdate={submitUpdate}
+                  removeItem={removeItem}
+                  item={item}
+               />
             );
          })}
       </div>

@@ -10,7 +10,7 @@ const App = () => {
    return (
       <section className="section-center">
          <Form setItems={setItems} />
-         <Items items={items} removeItem={removeItem} />
+         <Items items={items} setItems={setItems} removeItem={removeItem} />
          <ToastContainer />
       </section>
    );
