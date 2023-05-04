@@ -343,7 +343,7 @@ form h4 {
   overflow-wrap: break-word;
   overflow: hidden;
 }
-#_checkbox {
+._checkbox {
   display: none;
 }
 .remove-btn {

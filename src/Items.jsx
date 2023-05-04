@@ -1,13 +1,20 @@
+import { useCallback } from "react";
 import SingleItem from "./SingleItem";
 
-const Items = ({ items, setItems, removeItem }) => {
-   const submitUpdate = ({ id, updatedValue }) => {
-      const updatingItem = items.find((item) => item.id === id);
+const Items = ({ items, setItems }) => {
+   const removeItem = (id) => setItems(items.filter((x) => x.id !== id));
 
-      updatingItem.name = updatedValue;
+   const submitUpdate = useCallback(({ id, updatedValue }) => {
+      const updatedItems = items.map((item) => {
+         if (item.id === id) {
+            return { ...item, name: updatedValue };
+         }
+         return item;
+      });
+      setItems(updatedItems);
+   });
 
-      setItems(items);
-   };
+   //esli ne sdelat usecallback, App.jsx renderitsa ved nash state naxoditsa tam, a s pomosyu callback mi predotvratili render
 
    return (
       <div className="items">
