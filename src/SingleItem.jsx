@@ -6,18 +6,12 @@ import { GiCrossMark } from "react-icons/gi";
 import { MdOutlineDone } from "react-icons/md";
 
 const SingleItem = ({ item, removeItem, submitUpdate, editItem }) => {
-    const [isChecked, setIsChecked] = useState(item.completed);
     const [updatedValue, setUpdatedValue] = useState(null);
     const [update, setUpdate] = useState(false);
 
     const handleUpdate = (id) => {
         submitUpdate({ id, updatedValue });
         setUpdate(false);
-    };
-
-    const handleCheck = () => {
-        setIsChecked(!isChecked);
-        editItem(item.id);
     };
 
     return update ? (
@@ -42,11 +36,11 @@ const SingleItem = ({ item, removeItem, submitUpdate, editItem }) => {
                 type="checkbox"
                 className="_checkbox"
                 id={item.id}
-                checked={isChecked}
-                onChange={handleCheck}
+                checked={item.completed}
+                onChange={() => editItem(item.id)}
             />
             <label htmlFor={item.id}>
-                {isChecked ? (
+                {item.completed ? (
                     <GiCrossMark className="underdone icon" />
                 ) : (
                     <IoMdDoneAll className="done icon" />
@@ -55,8 +49,8 @@ const SingleItem = ({ item, removeItem, submitUpdate, editItem }) => {
 
             <p
                 style={{
-                    textDecoration: isChecked && "line-through",
-                    color: isChecked ? "red" : "green",
+                    textDecoration: item.completed && "line-through",
+                    color: item.completed ? "red" : "green",
                 }}
             >
                 {item.name}

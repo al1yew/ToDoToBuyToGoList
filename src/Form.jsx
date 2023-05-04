@@ -7,7 +7,6 @@ const Form = ({ addToDo }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (name) {
-            e.preventDefault();
             addToDo(name);
             setName("");
         } else {
