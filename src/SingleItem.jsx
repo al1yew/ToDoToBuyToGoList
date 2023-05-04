@@ -4,7 +4,6 @@ import { GrUpdate } from "react-icons/gr";
 import { IoMdDoneAll } from "react-icons/io";
 import { GiCrossMark } from "react-icons/gi";
 import { MdOutlineDone } from "react-icons/md";
-import { toast } from "react-toastify";
 
 const SingleItem = ({ item, removeItem, submitUpdate }) => {
    const [isChecked, setIsChecked] = useState(item.completed);
@@ -14,7 +13,6 @@ const SingleItem = ({ item, removeItem, submitUpdate }) => {
    const handleUpdate = (id) => {
       submitUpdate({ id, updatedValue });
       setUpdate(false);
-      toast.success("Updated");
    };
 
    return update ? (
