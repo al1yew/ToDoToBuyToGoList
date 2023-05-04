@@ -370,6 +370,7 @@ form h4 {
 .underdone {
   margin-top: 3px;
   cursor: pointer;
+  font-size: 27px
 }
 
 .Toastify__toast {

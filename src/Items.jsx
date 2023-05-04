@@ -2,27 +2,48 @@ import { useCallback } from "react";
 import SingleItem from "./SingleItem";
 import { toast } from "react-toastify";
 
-const Items = ({ items, setItems }) => {
-    const removeItem = (id) => setItems(items.filter((x) => x.id !== id));
+const Items = ({ items, setItems, setLocalStorage }) => {
+    const removeItem = (id) => {
+        const newTodolist = items.filter((x) => x.id !== id);
+        setItems(newTodolist);
+        setLocalStorage(newTodolist);
+        toast.warning("Deleted");
+    };
 
     const submitUpdate = useCallback(({ id, updatedValue }) => {
-        const updatedItems = items.map((item) => {
+        const newItems = items.map((item) => {
             if (item.id === id) {
-                //esli eto tot samiy item, menayem ego
                 return {
                     ...item,
                     name: updatedValue ?? item.name,
                 };
             }
-            return item; //esli eto ne tot item, to prosto proxodim mimo i vozvrashayem. Map metod ne dayet nam noviy array
+            return item;
         });
 
-        setItems(updatedItems);
-
+        setItems(newItems);
+        setLocalStorage(newItems);
         toast.success("Updated");
     });
 
     //esli ne sdelat usecallback, App.jsx renderitsa ved nash state naxoditsa tam, a s pomosyu callback mi predotvratili render
+
+    const editItem = (id) => {
+        const newItems = items.map((item) => {
+            if (item.id === id) {
+                return { ...item, completed: !item.completed };
+            }
+            return item;
+        });
+
+        setItems(newItems);
+        setLocalStorage(newItems);
+    };
+
+    const deleteAll = () => {
+        setItems([]);
+        localStorage.removeItem("todo");
+    };
 
     return (
         <div className="items">
@@ -33,9 +54,19 @@ const Items = ({ items, setItems }) => {
                         submitUpdate={submitUpdate}
                         removeItem={removeItem}
                         item={item}
+                        editItem={editItem}
                     />
                 );
             })}
+            {items.length > 0 && (
+                <button
+                    className="btn"
+                    style={{ marginTop: "30px" }}
+                    onClick={deleteAll}
+                >
+                    Delete All
+                </button>
+            )}
         </div>
     );
 };
