@@ -254,8 +254,8 @@ ul {
 .section-center {
   width: 90vw;
   margin: 0 auto;
-  margin-top: 8rem;
-  max-width: 30rem;
+  margin-top: 2rem;
+  max-width: 35rem;
   background: var(--white);
   border-radius: var(--borderRadius);
   padding: 2rem;
@@ -370,9 +370,40 @@ form h4 {
 .underdone {
   margin-top: 3px;
   cursor: pointer;
-  font-size: 27px
+  font-size: 27px;
 }
 
 .Toastify__toast {
   text-transform: capitalize;
+}
+
+.tabmenu {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  align-items: center;
+}
+
+.menukeeper {
+  display: flex;
+  justify-content: space-between;
+  width: 90vw;
+  margin: 0 auto;
+  max-width: 33rem;
+  flex-wrap: wrap;
+}
+
+.menukeeper span {
+  background-color: var(--primary-500);
+  color: white;
+  border-radius: var(--borderRadius);
+  padding: 5px;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.activespan {
+  background-color: var(--primary-900) !important;
 }

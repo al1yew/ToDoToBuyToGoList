@@ -4,14 +4,17 @@ import { GrUpdate } from "react-icons/gr";
 import { IoMdDoneAll } from "react-icons/io";
 import { GiCrossMark } from "react-icons/gi";
 import { MdOutlineDone } from "react-icons/md";
-import { REMOVETODO, UPDATETODO, SETCOMPLETEDTODO } from "./actions";
+import { REMOVEITEM, UPDATEITEM, SETCOMPLETEDITEM } from "./actions";
 
-const SingleItem = ({ item, dispatch }) => {
+const SingleItem = ({ item, dispatch, selectedType }) => {
     const [updatedValue, setUpdatedValue] = useState(null);
     const [update, setUpdate] = useState(false);
 
     const handleUpdate = (id) => {
-        dispatch({ type: UPDATETODO, payload: { id, updatedValue } });
+        dispatch({
+            type: UPDATEITEM,
+            payload: { id, updatedValue, selectedType },
+        });
         setUpdate(false);
     };
 
@@ -40,8 +43,8 @@ const SingleItem = ({ item, dispatch }) => {
                 checked={item.completed}
                 onChange={() =>
                     dispatch({
-                        type: SETCOMPLETEDTODO,
-                        payload: { id: item.id },
+                        type: SETCOMPLETEDITEM,
+                        payload: { id: item.id, selectedType },
                     })
                 }
             />
@@ -66,7 +69,10 @@ const SingleItem = ({ item, dispatch }) => {
                 className="btn remove-btn"
                 type="button"
                 onClick={() =>
-                    dispatch({ type: REMOVETODO, payload: { id: item.id } })
+                    dispatch({
+                        type: REMOVEITEM,
+                        payload: { id: item.id, selectedType },
+                    })
                 }
             >
                 <AiFillDelete className=" icon" />

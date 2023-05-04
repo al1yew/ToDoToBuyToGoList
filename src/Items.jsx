@@ -1,12 +1,17 @@
 import SingleItem from "./SingleItem";
-import { DELETETODOS } from "./actions";
+import { DELETEITEMS } from "./actions";
 
-const Items = ({ items, dispatch }) => {
+const Items = ({ items, dispatch, selectedType }) => {
     return (
         <div className="items">
             {items?.map((item) => {
                 return (
-                    <SingleItem dispatch={dispatch} key={item.id} item={item} />
+                    <SingleItem
+                        dispatch={dispatch}
+                        key={item.id}
+                        item={item}
+                        selectedType={selectedType}
+                    />
                 );
             })}
 
@@ -14,7 +19,12 @@ const Items = ({ items, dispatch }) => {
                 <button
                     className="btn"
                     style={{ marginTop: "30px" }}
-                    onClick={() => dispatch({ type: DELETETODOS })}
+                    onClick={() =>
+                        dispatch({
+                            type: DELETEITEMS,
+                            payload: { selectedType },
+                        })
+                    }
                 >
                     Delete All
                 </button>

@@ -1,18 +1,18 @@
 import { useState } from "react";
-import { ADDTODO } from "./actions";
+import { ADDITEM } from "./actions";
 
-const Form = ({ dispatch }) => {
+const Form = ({ dispatch, selectedType }) => {
     const [name, setName] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch({ type: ADDTODO, payload: { name } });
+        dispatch({ type: ADDITEM, payload: { name, selectedType } });
         setName("");
     };
 
     return (
         <form onSubmit={handleSubmit}>
-            <h4>to do list</h4>
+            <h4>{selectedType} list</h4>
             <div className="form-control">
                 <input
                     type="text"

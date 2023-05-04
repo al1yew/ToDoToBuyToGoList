@@ -1,5 +1,5 @@
-export const ADDTODO = "addtodo";
-export const REMOVETODO = "removetodo";
-export const UPDATETODO = "updatetodo";
-export const SETCOMPLETEDTODO = 'setcompletedtodo';
-export const DELETETODOS = "deletetodos";
+export const ADDITEM = "ADDITEM";
+export const REMOVEITEM = "REMOVEITEM";
+export const UPDATEITEM = "UPDATEITEM";
+export const SETCOMPLETEDITEM = 'SETCOMPLETEDITEM';
+export const DELETEITEMS = "DELETEITEMS";

@@ -1,15 +1,15 @@
-import { ADDTODO, REMOVETODO, UPDATETODO, SETCOMPLETEDTODO, DELETETODOS } from "./actions"
+import { ADDITEM, REMOVEITEM, UPDATEITEM, SETCOMPLETEDITEM, DELETEITEMS } from "./actions"
 import { nanoid } from "nanoid";
 import { toast } from "react-toastify";
 
 export const reducer = (state, action) => {
 
-    if (action.type === ADDTODO) {
-        const { name } = action.payload
+    if (action.type === ADDITEM) {
+        const { name, selectedType } = action.payload
 
         if (name) {
             const newItems = [
-                ...state.todo,
+                ...state[selectedType],
                 {
                     name,
                     completed: false,
@@ -17,27 +17,27 @@ export const reducer = (state, action) => {
                 }
             ];
 
-            setLocalStorage(newItems);
-            return { ...state, todo: newItems }
+            setLocalStorage(newItems, selectedType);
+            return { ...state, [selectedType]: newItems }
         }
 
         toast.error("Write!");
         return { ...state }
     }
 
-    if (action.type === REMOVETODO) {
-        const { id } = action.payload
+    if (action.type === REMOVEITEM) {
+        const { id, selectedType } = action.payload
 
-        const newItems = state.todo.filter((x) => x.id !== id);
-        setLocalStorage(newItems);
+        const newItems = state[selectedType].filter((x) => x.id !== id);
+        setLocalStorage(newItems, selectedType);
         toast.warning("Deleted");
-        return { ...state, todo: newItems }
+        return { ...state, [selectedType]: newItems }
     }
 
-    if (action.type === UPDATETODO) {
-        const { id, updatedValue } = action.payload;
+    if (action.type === UPDATEITEM) {
+        const { id, updatedValue, selectedType } = action.payload;
 
-        const newItems = state.todo.map((item) => {
+        const newItems = state[selectedType].map((item) => {
             if (item.id === id) {
                 return {
                     ...item,
@@ -47,34 +47,36 @@ export const reducer = (state, action) => {
             return item;
         });
 
-        setLocalStorage(newItems);
+        setLocalStorage(newItems, selectedType);
         toast.success("Updated");
-        return { ...state, todo: newItems }
+        return { ...state, [selectedType]: newItems }
     }
 
-    if (action.type === SETCOMPLETEDTODO) {
-        const { id } = action.payload;
+    if (action.type === SETCOMPLETEDITEM) {
+        const { id, selectedType } = action.payload;
 
-        const newItems = state.todo.map((item) => {
+        const newItems = state[selectedType].map((item) => {
             if (item.id === id) {
                 return { ...item, completed: !item.completed };
             }
             return item;
         });
-
-        setLocalStorage(newItems);
-        return { ...state, todo: newItems }
+        toast.success("WOW!");
+        setLocalStorage(newItems, selectedType);
+        return { ...state, [selectedType]: newItems }
     }
 
-    if (action.type === DELETETODOS) {
-        localStorage.removeItem("todo");
-        return { ...state, todo: [] }
+    if (action.type === DELETEITEMS) {
+        const { selectedType } = action.payload
+        toast.warning(`Deleted all for ${selectedType}`);
+        localStorage.removeItem(selectedType);
+        return { ...state, [selectedType]: [] }
     }
 }
 
 
 
 
-export const setLocalStorage = (items) => {
-    localStorage.setItem("todo", JSON.stringify(items));
+export const setLocalStorage = (items, selectedType) => {
+    localStorage.setItem(selectedType, JSON.stringify(items));
 };
