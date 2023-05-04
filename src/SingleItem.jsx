@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import { GrUpdate } from "react-icons/gr";
 import { IoMdDoneAll } from "react-icons/io";
@@ -9,6 +9,7 @@ import { REMOVEITEM, UPDATEITEM, SETCOMPLETEDITEM } from "./actions";
 const SingleItem = ({ item, dispatch, selectedType }) => {
     const [updatedValue, setUpdatedValue] = useState(null);
     const [update, setUpdate] = useState(false);
+    const inputRef = useRef();
 
     const handleUpdate = (id) => {
         dispatch({
@@ -18,9 +19,16 @@ const SingleItem = ({ item, dispatch, selectedType }) => {
         setUpdate(false);
     };
 
+    useEffect(() => {
+        if (update) {
+            inputRef.current.focus();
+        }
+    }, [update]);
+
     return update ? (
         <div className="form-area">
             <input
+                ref={inputRef}
                 type="text"
                 className="form-area-input"
                 value={updatedValue ?? item.name}
