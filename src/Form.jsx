@@ -1,17 +1,13 @@
 import { useState } from "react";
-import { toast } from "react-toastify";
+import { ADDTODO } from "./actions";
 
-const Form = ({ addToDo }) => {
+const Form = ({ dispatch }) => {
     const [name, setName] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (name) {
-            addToDo(name);
-            setName("");
-        } else {
-            toast.error("Write!");
-        }
+        dispatch({ type: ADDTODO, payload: { name } });
+        setName("");
     };
 
     return (
@@ -31,4 +27,5 @@ const Form = ({ addToDo }) => {
         </form>
     );
 };
+
 export default Form;

@@ -1,32 +1,22 @@
-import { useState } from "react";
+import { useReducer } from "react";
 import Form from "./Form";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import Items from "./Items";
-import { nanoid } from "nanoid";
+import { reducer } from "./reducer";
 
-const setLocalStorage = (items) => {
-    localStorage.setItem("todo", JSON.stringify(items));
+const defaultState = {
+    todo: JSON.parse(localStorage.getItem("todo")) ?? [],
+    tobuy: JSON.parse(localStorage.getItem("tobuy")) ?? [],
+    togo: JSON.parse(localStorage.getItem("togo")) ?? [],
 };
 
 const App = () => {
-    const [items, setItems] = useState(
-        JSON.parse(localStorage.getItem("todo")) ?? []
-    );
-
-    const addToDo = (name) => {
-        const newItems = [...items, { name, completed: false, id: nanoid() }];
-        setItems(newItems);
-        setLocalStorage(newItems);
-    };
+    const [state, dispatch] = useReducer(reducer, defaultState);
 
     return (
         <section className="section-center">
-            <Form addToDo={addToDo} />
-            <Items
-                setLocalStorage={setLocalStorage}
-                items={items}
-                setItems={setItems}
-            />
+            <Form dispatch={dispatch} />
+            <Items items={state.todo} dispatch={dispatch} />
             <ToastContainer autoClose={1000} />
         </section>
     );
