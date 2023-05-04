@@ -11,7 +11,7 @@ const Items = ({ items, setItems }) => {
                 //esli eto tot samiy item, menayem ego
                 return {
                     ...item,
-                    name: updatedValue.length > 0 ? updatedValue : item.name,
+                    name: updatedValue ?? item.name,
                 };
             }
             return item; //esli eto ne tot item, to prosto proxodim mimo i vozvrashayem. Map metod ne dayet nam noviy array
