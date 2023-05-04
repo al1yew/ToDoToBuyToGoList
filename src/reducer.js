@@ -17,6 +17,7 @@ export const reducer = (state, action) => {
                 }
             ];
 
+            toast.success(`Added into To ${selectedType.slice(2)} list`)
             setLocalStorage(newItems, selectedType);
             return { ...state, [selectedType]: newItems }
         }
@@ -30,7 +31,7 @@ export const reducer = (state, action) => {
 
         const newItems = state[selectedType].filter((x) => x.id !== id);
         setLocalStorage(newItems, selectedType);
-        toast.warning("Deleted");
+        toast.warning(`Deleted from To ${selectedType.slice(2)} list`)
         return { ...state, [selectedType]: newItems }
     }
 
@@ -48,7 +49,7 @@ export const reducer = (state, action) => {
         });
 
         setLocalStorage(newItems, selectedType);
-        toast.success("Updated");
+        toast.success(`Updated ${selectedType.slice(2)} list`)
         return { ...state, [selectedType]: newItems }
     }
 
@@ -61,7 +62,7 @@ export const reducer = (state, action) => {
             }
             return item;
         });
-        toast.success("WOW!");
+        toast.success("WOW! You do Good!");
         setLocalStorage(newItems, selectedType);
         return { ...state, [selectedType]: newItems }
     }
