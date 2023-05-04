@@ -5,6 +5,7 @@ const Form = ({ addToDo }) => {
     const [name, setName] = useState("");
 
     const handleSubmit = (e) => {
+        e.preventDefault();
         if (name) {
             e.preventDefault();
             addToDo(name);

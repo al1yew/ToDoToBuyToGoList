@@ -3,12 +3,12 @@ import SingleItem from "./SingleItem";
 import { toast } from "react-toastify";
 
 const Items = ({ items, setItems, setLocalStorage }) => {
-    const removeItem = (id) => {
+    const removeItem = useCallback((id) => {
         const newTodolist = items.filter((x) => x.id !== id);
         setItems(newTodolist);
         setLocalStorage(newTodolist);
         toast.warning("Deleted");
-    };
+    });
 
     const submitUpdate = useCallback(({ id, updatedValue }) => {
         const newItems = items.map((item) => {
@@ -28,7 +28,7 @@ const Items = ({ items, setItems, setLocalStorage }) => {
 
     //esli ne sdelat usecallback, App.jsx renderitsa ved nash state naxoditsa tam, a s pomosyu callback mi predotvratili render
 
-    const editItem = (id) => {
+    const editItem = useCallback((id) => {
         const newItems = items.map((item) => {
             if (item.id === id) {
                 return { ...item, completed: !item.completed };
@@ -38,12 +38,12 @@ const Items = ({ items, setItems, setLocalStorage }) => {
 
         setItems(newItems);
         setLocalStorage(newItems);
-    };
+    });
 
-    const deleteAll = () => {
+    const deleteAll = useCallback(() => {
         setItems([]);
         localStorage.removeItem("todo");
-    };
+    });
 
     return (
         <div className="items">
