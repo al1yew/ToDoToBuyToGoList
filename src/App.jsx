@@ -32,7 +32,7 @@ const App = () => {
                                 }
                                 onClick={() => setSelectedType(type)}
                             >
-                                {type}
+                                To {type.slice(2)}
                             </span>
                         );
                     })}
