@@ -75,7 +75,8 @@ export const reducer = (state, action) => {
     }
 }
 
-
+//prioritize
+//search engine
 
 
 export const setLocalStorage = (items, selectedType) => {

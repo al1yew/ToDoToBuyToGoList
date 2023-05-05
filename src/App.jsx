@@ -15,6 +15,7 @@ const defaultState = {
     tocook: JSON.parse(localStorage.getItem("tocook")) ?? [],
     tocall: JSON.parse(localStorage.getItem("tocall")) ?? [],
     tovisit: JSON.parse(localStorage.getItem("tovisit")) ?? [],
+    tolearn: JSON.parse(localStorage.getItem("tolearn")) ?? [],
 };
 
 const App = () => {
