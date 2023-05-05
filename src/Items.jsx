@@ -18,7 +18,7 @@ const Items = ({ items, dispatch, selectedType }) => {
             {items.length > 0 && (
                 <button
                     className="btn"
-                    style={{ marginTop: "30px" }}
+                    style={{ marginTop: "30px", background: "red" }}
                     onClick={() =>
                         dispatch({
                             type: DELETEITEMS,
