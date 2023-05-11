@@ -251,6 +251,27 @@ ul {
 }
 /* ============= PROJECT CSS =============== */
 
+
+/*region scrollbar*/
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/*region scrollbar*/
+
 .section-center {
   width: 90vw;
   margin: 0 auto;
@@ -287,8 +308,20 @@ form h4 {
   border-bottom-left-radius: var(--borderRadius);
   outline: none;
   padding: 6px;
-  font-size: 14px;
+  min-height: 150px;
+  max-height: 400px;
+  font-size: 16px;
   border: 1px solid var(--primary-600);
+}
+
+@media screen and (max-width: 576px) {
+  .form-area-input {
+    font-size: 14px !important;
+  }
+}
+
+textarea {
+  resize: none;
 }
 
 .form-area button {

@@ -27,13 +27,13 @@ const SingleItem = ({ item, dispatch, selectedType }) => {
 
     return update ? (
         <div className="form-area">
-            <input
+            <textarea
                 ref={inputRef}
                 type="text"
                 className="form-area-input"
                 value={updatedValue ?? item.name}
                 onChange={(e) => setUpdatedValue(e.target.value)}
-            />
+            ></textarea>
             <button
                 className="btn"
                 type="button"
