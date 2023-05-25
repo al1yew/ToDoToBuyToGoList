@@ -16,7 +16,7 @@ const Form = ({ dispatch, selectedType }) => {
                 To{" "}
                 {selectedType === "todotomorrow"
                     ? "do tomorrow"
-                    : selectedType.slice(2)}
+                    : selectedType.slice(2)} List
             </h4>
             <div className="form-control">
                 <input
