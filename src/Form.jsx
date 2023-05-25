@@ -12,7 +12,12 @@ const Form = ({ dispatch, selectedType }) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <h4>To {selectedType.slice(2)} list</h4>
+            <h4>
+                To{" "}
+                {selectedType === "todotomorrow"
+                    ? "do tomorrow"
+                    : selectedType.slice(2)}
+            </h4>
             <div className="form-control">
                 <input
                     type="text"
