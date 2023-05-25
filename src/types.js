@@ -1,3 +1,3 @@
 export const types = [
-    'todo', 'tobuy', 'togo', 'tocook', 'toachieve', 'toread', 'towatch', 'tocall', 'tovisit', 'tolearn', "tocreate"
+    'todo', 'tobuy', 'togo', 'todotomorrow', 'tocook', 'toachieve', 'toread', 'towatch', 'tocall', 'tovisit', 'tolearn', "tocreate"
 ] 

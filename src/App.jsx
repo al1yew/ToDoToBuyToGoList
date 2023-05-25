@@ -9,6 +9,7 @@ const defaultState = {
     todo: JSON.parse(localStorage.getItem("todo")) ?? [],
     tobuy: JSON.parse(localStorage.getItem("tobuy")) ?? [],
     togo: JSON.parse(localStorage.getItem("togo")) ?? [],
+    todotomorrow: JSON.parse(localStorage.getItem("todotomorrow")) ?? [],
     towatch: JSON.parse(localStorage.getItem("towatch")) ?? [],
     toread: JSON.parse(localStorage.getItem("toread")) ?? [],
     toachieve: JSON.parse(localStorage.getItem("toachieve")) ?? [],
