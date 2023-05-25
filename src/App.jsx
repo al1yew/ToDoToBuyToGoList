@@ -39,7 +39,7 @@ const App = () => {
                             >
                                 To{" "}
                                 {type === "todotomorrow"
-                                    ? "to do tomorrow"
+                                    ? "do tomorrow"
                                     : type.slice(2)}
                             </span>
                         );
