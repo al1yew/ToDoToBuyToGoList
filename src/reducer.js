@@ -1,11 +1,16 @@
-import { ADDITEM, REMOVEITEM, UPDATEITEM, SETCOMPLETEDITEM, DELETEITEMS } from "./actions"
+import {
+    ADDITEM,
+    REMOVEITEM,
+    UPDATEITEM,
+    SETCOMPLETEDITEM,
+    DELETEITEMS,
+} from "./actions";
 import { nanoid } from "nanoid";
 import { toast } from "react-toastify";
 
 export const reducer = (state, action) => {
-
     if (action.type === ADDITEM) {
-        const { name, selectedType } = action.payload
+        const { name, selectedType } = action.payload;
 
         if (name) {
             const newItems = [
@@ -13,26 +18,26 @@ export const reducer = (state, action) => {
                 {
                     name,
                     completed: false,
-                    id: nanoid()
-                }
+                    id: nanoid(),
+                },
             ];
 
-            toast.success(`Added into To ${selectedType.slice(2)} list`)
+            toast.success(`Added into To ${selectedType.slice(2)} list`);
             setLocalStorage(newItems, selectedType);
-            return { ...state, [selectedType]: newItems }
+            return { ...state, [selectedType]: newItems };
         }
 
         toast.error("Write!");
-        return { ...state }
+        return { ...state };
     }
 
     if (action.type === REMOVEITEM) {
-        const { id, selectedType } = action.payload
+        const { id, selectedType } = action.payload;
 
         const newItems = state[selectedType].filter((x) => x.id !== id);
         setLocalStorage(newItems, selectedType);
-        toast.warning(`Deleted from To ${selectedType.slice(2)} list`)
-        return { ...state, [selectedType]: newItems }
+        toast.warning(`Deleted from To ${selectedType.slice(2)} list`);
+        return { ...state, [selectedType]: newItems };
     }
 
     if (action.type === UPDATEITEM) {
@@ -49,8 +54,8 @@ export const reducer = (state, action) => {
         });
 
         setLocalStorage(newItems, selectedType);
-        toast.success(`Updated ${selectedType.slice(2)} list`)
-        return { ...state, [selectedType]: newItems }
+        toast.success(`Updated ${selectedType.slice(2)} list`);
+        return { ...state, [selectedType]: newItems };
     }
 
     if (action.type === SETCOMPLETEDITEM) {
@@ -58,26 +63,30 @@ export const reducer = (state, action) => {
 
         const newItems = state[selectedType].map((item) => {
             if (item.id === id) {
+                item.completed
+                    ? toast.warning("Ehh... Again?")
+                    : toast.success("WOW! You do Good!");
+
                 return { ...item, completed: !item.completed };
             }
             return item;
         });
-        toast.success("WOW! You do Good!");
+
         setLocalStorage(newItems, selectedType);
-        return { ...state, [selectedType]: newItems }
+
+        return { ...state, [selectedType]: newItems };
     }
 
     if (action.type === DELETEITEMS) {
-        const { selectedType } = action.payload
+        const { selectedType } = action.payload;
         toast.warning(`Deleted all for ${selectedType}`);
         localStorage.removeItem(selectedType);
-        return { ...state, [selectedType]: [] }
+        return { ...state, [selectedType]: [] };
     }
-}
+};
 
 //prioritize
-//search engine
-
+//search
 
 export const setLocalStorage = (items, selectedType) => {
     localStorage.setItem(selectedType, JSON.stringify(items));
